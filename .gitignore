@@ -1,0 +1,13 @@
+**/node_modules
+**/test-results/
+**/playwright-report/
+**/playwright/.cache/
+.env
+core/*.js
+helpers/*.js
+index.js
+playwright.config.js
+eslint.js
+prettier.js
+**/*.d.ts
+!types.d.ts
