@@ -3,7 +3,7 @@
 **/playwright-report/
 **/playwright/.cache/
 .env
-core/*.js
+page/*.js
 helpers/*.js
 index.js
 playwright.config.js

@@ -1,9 +1,9 @@
 import { type Locator, type Page } from '@playwright/test'
 
-import { Roles } from './types'
+import type { Roles } from './types'
 
 export class AbstractPage<TPageLocator> {
-  protected readonly page: Page
+  public readonly page: Page
   protected pageLocator!: TPageLocator
 
   constructor(page: Page) {

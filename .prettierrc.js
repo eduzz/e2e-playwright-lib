@@ -1,6 +1,6 @@
 module.exports = {
   ...require('@eduzz/eslint-config/.prettierrc'),
-  "semi": false,
+  "semi": true,
   "finalNewLine": true,
-  "endOfLine": 'LF'
+  "endOfLine": 'lf'
 };
