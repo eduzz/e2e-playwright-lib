@@ -1,40 +1,40 @@
-import { type Locator, type Page } from '@playwright/test'
+import { type Locator, type Page } from '@playwright/test';
 
-import type { Roles } from './types'
+import type { Roles } from './types';
 
 export class AbstractPage<TPageLocator> {
-  public readonly page: Page
-  protected pageLocator!: TPageLocator
+  public readonly page: Page;
+  protected pageLocator!: TPageLocator;
 
   constructor(page: Page) {
-    this.page = page
+    this.page = page;
   }
 
   public get locators() {
-    return this.pageLocator
+    return this.pageLocator;
   }
 
   public async toHome() {
-    await this.page.goto('/')
+    await this.page.goto('/');
   }
 
   public locator(selector: string, opt?: { exact?: boolean }): Locator {
-    return this.locate(selector, opt)
+    return this.locate(selector, opt);
   }
 
   public locate(selector: string, opt?: { exact?: boolean }): Locator {
     if (selector.startsWith('s:')) {
-      return this.page.getByText(selector.substring(2), opt)
+      return this.page.getByText(selector.substring(2), opt);
     }
 
-    return this.page.locator(selector)
+    return this.page.locator(selector);
   }
 
   public getByRole(role: Roles, opt?: { name?: string }) {
-    return this.page.getByRole(role, opt)
+    return this.page.getByRole(role, opt);
   }
 
   public getByText(text: string, opt?: { exact?: boolean }) {
-    return this.page.getByText(text, opt)
+    return this.page.getByText(text, opt);
   }
 }
