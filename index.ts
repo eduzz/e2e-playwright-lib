@@ -1,4 +1,4 @@
+export * from './helpers/functions'
+export * from './page/AbstractPage'
+export * from './page/types'
 
-export * from './core/AbstractPage';
-export * from './core/types';
-export * from './helpers/functions';

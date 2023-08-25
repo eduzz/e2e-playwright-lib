@@ -2,7 +2,7 @@ import { type Locator, type Page } from '@playwright/test'
 
 import { Roles } from './types'
 
-class AbstractPage<TPageLocator> {
+export class AbstractPage<TPageLocator> {
   protected readonly page: Page
   protected pageLocator!: TPageLocator
 
@@ -16,6 +16,10 @@ class AbstractPage<TPageLocator> {
 
   public async toHome() {
     await this.page.goto('/')
+  }
+
+  public locator(selector: string, opt?: { exact?: boolean }): Locator {
+    return this.locate(selector, opt)
   }
 
   public locate(selector: string, opt?: { exact?: boolean }): Locator {
@@ -34,5 +38,3 @@ class AbstractPage<TPageLocator> {
     return this.page.getByText(text, opt)
   }
 }
-
-export default AbstractPage
