@@ -27,6 +27,10 @@ export class AbstractPage<TPageLocator> {
       return this.page.getByText(selector.substring(2), opt);
     }
 
+    if (selector.startsWith('p:')) {
+      return this.page.getByPlaceholder(selector.substring(2), opt);
+    }
+
     return this.page.locator(selector);
   }
 
@@ -39,6 +43,6 @@ export class AbstractPage<TPageLocator> {
   }
 
   public getByPlaceholder(text: string, opt?: { exact?: boolean }) {
-    return this.page.getByPlaceholder(text, opt)
+    return this.page.getByPlaceholder(text, opt);
   }
 }
