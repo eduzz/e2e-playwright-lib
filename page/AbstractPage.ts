@@ -37,4 +37,8 @@ export class AbstractPage<TPageLocator> {
   public getByText(text: string, opt?: { exact?: boolean }) {
     return this.page.getByText(text, opt);
   }
+
+  public getByPlaceholder(text: string, opt?: { exact?: boolean }) {
+    return this.page.getByPlaceholder(text, opt)
+  }
 }
