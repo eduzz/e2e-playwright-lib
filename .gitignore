@@ -5,6 +5,7 @@
 .env
 page/*.js
 helpers/*.js
+reporters/*.js
 index.js
 playwright.config.js
 eslint.js
