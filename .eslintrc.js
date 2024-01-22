@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['@eduzz/eslint-config'],
-  plugins: ['sonarjs', 'simple-import-sort'],
+  plugins: ['simple-import-sort'],
   rules: {
     '@typescript-eslint/explicit-member-accessibility': 'off',
     'max-lines': ['error', 5000],
@@ -50,4 +50,4 @@ module.exports = {
       }
     }
   ]
-}
+};
