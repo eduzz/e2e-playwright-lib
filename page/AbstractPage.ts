@@ -34,8 +34,29 @@ export class AbstractPage<TPageLocator> {
     return this.page.locator(selector);
   }
 
-  public getByRole(role: Roles, opt?: { name?: string }) {
+  public getByRole(
+    role: Roles,
+    opt?: {
+      name?: string;
+      checked?: boolean;
+      disabled?: boolean;
+      exact?: boolean;
+      expanded?: boolean;
+      includeHidden?: boolean;
+      level?: number;
+      pressed?: boolean;
+      selected?: boolean;
+    }
+  ) {
     return this.page.getByRole(role, opt);
+  }
+
+  public getByTitle(role: string | RegExp, opt?: { exact?: boolean }) {
+    return this.page.getByTitle(role, opt);
+  }
+
+  public getByTestId(role: string | RegExp) {
+    return this.page.getByTestId(role);
   }
 
   public getByText(text: string, opt?: { exact?: boolean }) {
