@@ -18,6 +18,7 @@
     "inlineSources": true,
     "alwaysStrict": true,
     "baseUrl": ".",
+    "outDir": "./dist",
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]

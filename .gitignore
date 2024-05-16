@@ -12,3 +12,4 @@ eslint.js
 prettier.js
 **/*.d.ts
 !types.d.ts
+dist

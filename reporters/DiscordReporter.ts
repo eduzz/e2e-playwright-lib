@@ -1,7 +1,7 @@
 import type { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from '@playwright/test/reporter';
 import axios from 'axios';
 
-class DiscordReporter implements Reporter {
+export class DiscordReporter implements Reporter {
   private botzzUrl?: string;
   private project?: string;
   private countStatus: any = {
@@ -21,9 +21,9 @@ class DiscordReporter implements Reporter {
     this.project = options.project;
   }
 
-  onBegin(config: FullConfig, suite: Suite) {}
+  onBegin(_config: FullConfig, _suite: Suite) {}
 
-  onTestBegin(test: TestCase) {}
+  onTestBegin(_test: TestCase) {}
 
   async onTestEnd(test: TestCase, result: TestResult) {
     this.countStatus[result.status]++;
@@ -31,7 +31,7 @@ class DiscordReporter implements Reporter {
     await axios.post(this.botzzUrl, this.map(test, result));
   }
 
-  async onEnd(result: FullResult) {
+  async onEnd(_result: FullResult) {
     if (!this.botzzUrl) return;
     await axios.post(this.botzzUrl, {
       project: this.project,
@@ -71,5 +71,3 @@ class DiscordReporter implements Reporter {
     return str.replace(this.ansiRegex, '');
   }
 }
-
-export default DiscordReporter;
