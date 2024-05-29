@@ -1,6 +1,6 @@
 {
   "name": "@eduzz/e2e-playwright-base",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Base project for playwright tests",
   "main": "dist/index.js",
@@ -24,19 +24,19 @@
     "url": "https://github.com/eduzz/e2e-playwright-base/issues"
   },
   "peerDependencies": {
-    "@playwright/test": "^1.44.0"
+    "@playwright/test": "^1.44.1"
   },
   "dependencies": {
     "@eduzz/eslint-config": "1.1.1",
     "@faker-js/faker": "^8.4.1",
     "@reportportal/agent-js-playwright": "^5.1.8",
     "@types/node": "^20.12.12",
-    "@typescript-eslint/eslint-plugin": "^7.9.0",
-    "@typescript-eslint/parser": "^7.9.0",
-    "axios": "^1.6.8",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "env-cmd": "10.1.0",
-    "esbuild": "^0.21.3",
+    "esbuild": "^0.21.4",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-eslint-plugin": "^6.1.0",

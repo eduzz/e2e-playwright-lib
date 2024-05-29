@@ -50,6 +50,7 @@ const RPconfig = {
     timeout: 10000
   }
 };
+
 const reportParseEnv = (process.env.REPORTERS || 'playwright-json-summary-reporter,html,dot')
   .split(',')
   .map(r => [r.trim()]);

@@ -11,11 +11,11 @@ export class DiscordReporter implements Reporter {
     skipped: 0,
     interrupted: 0
   };
+
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  private ansiRegex = new RegExp(
-    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))',
-    'g'
-  );
+  private ansiRegex =
+    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
+
   constructor(options: { botzzUrl?: string; project?: string } = {}) {
     this.botzzUrl = options.botzzUrl;
     this.project = options.project;
@@ -27,12 +27,19 @@ export class DiscordReporter implements Reporter {
 
   async onTestEnd(test: TestCase, result: TestResult) {
     this.countStatus[result.status]++;
-    if (!this.botzzUrl) return;
+
+    if (!this.botzzUrl) {
+      return;
+    }
+
     await axios.post(this.botzzUrl, this.map(test, result));
   }
 
   async onEnd(_result: FullResult) {
-    if (!this.botzzUrl) return;
+    if (!this.botzzUrl) {
+      return;
+    }
+
     await axios.post(this.botzzUrl, {
       project: this.project,
       type: 'countStatus',
@@ -47,14 +54,12 @@ export class DiscordReporter implements Reporter {
       data: {
         title: test.title,
         status: result.status,
-        // retry: result.retry,
         error: {
           ...result.error,
           message: this.stripAnsi(result.error?.message),
           stack: this.stripAnsi(result.error?.stack),
           snippet: this.stripAnsi(result.error?.snippet)
         }
-        // attachments: result.attachments,
       },
       args: {
         env: process.env.NODE_ENV || 'local',
@@ -67,7 +72,10 @@ export class DiscordReporter implements Reporter {
   }
 
   private stripAnsi(str?: string): string {
-    if (!str) return '';
-    return str.replace(this.ansiRegex, '');
+    if (!str) {
+      return '';
+    }
+
+    return str.replace(new RegExp(this.ansiRegex, 'g'), '');
   }
 }
