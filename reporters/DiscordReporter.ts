@@ -1,7 +1,7 @@
-import type { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from '@playwright/test/reporter';
+import { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from '@playwright/test/reporter';
 import axios from 'axios';
 
-export class DiscordReporter implements Reporter {
+class DiscordReporter implements Reporter {
   private botzzUrl?: string;
   private project?: string;
   private countStatus: any = {
@@ -79,3 +79,5 @@ export class DiscordReporter implements Reporter {
     return str.replace(new RegExp(this.ansiRegex, 'g'), '');
   }
 }
+
+export default DiscordReporter;
