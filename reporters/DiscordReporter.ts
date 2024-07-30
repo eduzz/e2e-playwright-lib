@@ -11,8 +11,6 @@ class DiscordReporter implements Reporter {
     skipped: 0,
     interrupted: 0
   };
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   private ansiRegex =
     '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
 
@@ -21,11 +19,11 @@ class DiscordReporter implements Reporter {
     this.project = options.project;
   }
 
-  onBegin(_config: FullConfig, _suite: Suite) {}
+  public onBegin(_config: FullConfig, _suite: Suite) {}
 
-  onTestBegin(_test: TestCase) {}
+  public onTestBegin(_test: TestCase) {}
 
-  async onTestEnd(test: TestCase, result: TestResult) {
+  public async onTestEnd(test: TestCase, result: TestResult): Promise<void> {
     this.countStatus[result.status]++;
 
     if (!this.botzzUrl) {
@@ -35,7 +33,7 @@ class DiscordReporter implements Reporter {
     await axios.post(this.botzzUrl, this.map(test, result));
   }
 
-  async onEnd(_result: FullResult) {
+  public async onEnd(_result: FullResult) {
     if (!this.botzzUrl) {
       return;
     }

@@ -1,5 +1,6 @@
-import dotenv from 'dotenv';
 import os from 'os';
+
+import dotenv from 'dotenv';
 
 dotenv.config();
 dotenv.config({ path: '/var/secrets-store/.env.generic', override: true });

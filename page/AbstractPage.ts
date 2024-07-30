@@ -3,12 +3,9 @@ import { type Locator, type Page } from '@playwright/test';
 import type { Roles } from './types';
 
 export class AbstractPage<TPageLocator> {
-  public readonly page: Page;
   protected pageLocator!: TPageLocator;
 
-  constructor(page: Page) {
-    this.page = page;
-  }
+  constructor(public readonly page: Page) {}
 
   public get locators() {
     return this.pageLocator;
