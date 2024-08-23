@@ -1,4 +1,10 @@
-const { ignores, configs } = require('@eduzz/eslint-config'); // Javascript / Typescript / Node
+const { ignores, configs } = require('@eduzz/eslint-config');
 
-/** @type import('eslint').Linter.FlatConfig[] */
-module.exports = [...configs, { ignores: ignores() }];
+module.exports = [
+  ...configs,
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: { 'max-lines': ['error', { max: 10000 }] }
+  },
+  { ignores: ignores() }
+];
