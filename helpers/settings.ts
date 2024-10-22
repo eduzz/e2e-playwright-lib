@@ -58,7 +58,7 @@ const reportParseEnv = (process.env.REPORTERS || 'playwright-json-summary-report
 export const REPORTERS = [
   ...(RP_API_KEY ? [['@reportportal/agent-js-playwright', RPconfig]] : []),
   ...reportParseEnv,
-  ['@eduzz/e2e-playwright-base/reporters/DiscordReporter', { botzzUrl: BOTZZ_URL, project: PROJECT }]
+  ['@eduzz/e2e-playwright-base/dist/reporters/DiscordReporter', { botzzUrl: BOTZZ_URL, project: PROJECT }]
 ];
 
 export function getCPUCount() {
