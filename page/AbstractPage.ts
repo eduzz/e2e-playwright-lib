@@ -15,17 +15,17 @@ export class AbstractPage<TPageLocator> {
     await this.page.goto('/');
   }
 
-  public locator(selector: string, opt?: { exact?: boolean }): Locator {
-    return this.locate(selector, opt);
+  public locator(selector: string, options?: { exact?: boolean }): Locator {
+    return this.locate(selector, options);
   }
 
-  public locate(selector: string, opt?: { exact?: boolean }): Locator {
+  public locate(selector: string, options?: { exact?: boolean }): Locator {
     if (selector.startsWith('s:')) {
-      return this.page.getByText(selector.substring(2), opt);
+      return this.page.getByText(selector.substring(2), options);
     }
 
     if (selector.startsWith('p:')) {
-      return this.page.getByPlaceholder(selector.substring(2), opt);
+      return this.page.getByPlaceholder(selector.substring(2), options);
     }
 
     return this.page.locator(selector);
@@ -33,7 +33,7 @@ export class AbstractPage<TPageLocator> {
 
   public getByRole(
     role: Roles,
-    opt?: {
+    options?: {
       name?: string;
       checked?: boolean;
       disabled?: boolean;
@@ -45,22 +45,31 @@ export class AbstractPage<TPageLocator> {
       selected?: boolean;
     }
   ) {
-    return this.page.getByRole(role, opt);
+    return this.page.getByRole(role, options);
   }
 
-  public getByTitle(role: string | RegExp, opt?: { exact?: boolean }) {
-    return this.page.getByTitle(role, opt);
+  public getByTitle(role: string | RegExp, options?: { exact?: boolean }) {
+    return this.page.getByTitle(role, options);
   }
 
   public getByTestId(role: string | RegExp) {
     return this.page.getByTestId(role);
   }
 
-  public getByText(text: string, opt?: { exact?: boolean }) {
-    return this.page.getByText(text, opt);
+  public getByText(text: string, options?: { exact?: boolean }) {
+    return this.page.getByText(text, options);
   }
 
-  public getByPlaceholder(text: string, opt?: { exact?: boolean }) {
-    return this.page.getByPlaceholder(text, opt);
+  public getByPlaceholder(text: string, options?: { exact?: boolean }) {
+    return this.page.getByPlaceholder(text, options);
+  }
+
+  public getByLabel(
+    text: string | RegExp,
+    options?: {
+      exact?: boolean;
+    }
+  ) {
+    return this.page.getByLabel(text, options);
   }
 }
