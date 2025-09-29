@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2019",
-    "moduleResolution": "node16",
-    "module": "node16",
+    "target": "es2024",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
     "removeComments": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
