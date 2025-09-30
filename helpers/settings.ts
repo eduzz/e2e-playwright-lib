@@ -2,9 +2,11 @@ import os from 'os';
 
 import dotenv from 'dotenv';
 
-dotenv.config();
-dotenv.config({ path: '/var/secrets-store/.env.generic', override: true });
-dotenv.config({ path: '/var/secrets-store/.env', override: true });
+dotenv.config({
+  path: ['/var/secrets-store/.env.generic', '/var/secrets-store/.env'],
+  override: true,
+  quiet: true
+});
 
 const RP_API_KEY = process.env.RP_API_KEY;
 const RP_ENDPOINT = process.env.RP_ENDPOINT;
