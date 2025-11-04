@@ -1,6 +1,6 @@
 {
   "name": "@eduzz/e2e-playwright-base",
-  "version": "0.4.3-beta1",
+  "version": "0.4.3",
   "private": false,
   "description": "Base project for playwright tests",
   "main": "dist/index.js",
