@@ -2,8 +2,12 @@ import os from 'os';
 
 import dotenv from 'dotenv';
 
+const dir = process.cwd();
+
+console.log(`Loading .env files from: ${dir}/.env, /var/secrets-store/.env.generic, /var/secrets-store/.env`);
+
 dotenv.config({
-  path: ['/var/secrets-store/.env.generic', '/var/secrets-store/.env'],
+  path: [`${dir}/.env`, '/var/secrets-store/.env.generic', '/var/secrets-store/.env'],
   override: true,
   quiet: true
 });
