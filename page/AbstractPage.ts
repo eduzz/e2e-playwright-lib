@@ -1,6 +1,6 @@
 import { type Locator, type Page } from '@playwright/test';
 
-import type { Roles } from './types';
+import type { Roles } from './types.js';
 
 export class AbstractPage<TPageLocator> {
   protected pageLocator!: TPageLocator;
