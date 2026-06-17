@@ -1,18 +1,21 @@
 {
   "name": "@eduzz/e2e-playwright-base",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "private": false,
   "description": "Base project for playwright tests",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./dist/reporters/DiscordReporter": {
       "types": "./dist/reporters/DiscordReporter.d.ts",
-      "import": "./dist/reporters/DiscordReporter.js"
+      "import": "./dist/reporters/DiscordReporter.js",
+      "default": "./dist/reporters/DiscordReporter.js"
     }
   },
   "files": [
