@@ -56,7 +56,7 @@ export class AbstractPage<TPageLocator> {
     return this.page.getByTestId(role);
   }
 
-  public getByText(text: string, options?: { exact?: boolean }) {
+  public getByText(text: string | RegExp, options?: { exact?: boolean }) {
     return this.page.getByText(text, options);
   }
 
