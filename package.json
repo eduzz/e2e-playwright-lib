@@ -1,6 +1,6 @@
 {
   "name": "@eduzz/e2e-playwright-base",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "private": false,
   "description": "Base project for playwright tests",
   "type": "module",

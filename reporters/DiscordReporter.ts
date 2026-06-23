@@ -11,6 +11,14 @@ class DiscordReporter implements Reporter {
     skipped: 0,
     interrupted: 0
   };
+  private failedTests: Array<{
+    title: string;
+    projectName: string;
+    status: string;
+    duration: number;
+    retry: number;
+    error: { message: string; stack: string; snippet: string };
+  }> = [];
   private ansiRegex =
     '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
 
@@ -25,6 +33,21 @@ class DiscordReporter implements Reporter {
 
   public async onTestEnd(test: TestCase, result: TestResult): Promise<void> {
     this.countStatus[result.status]++;
+
+    if (result.status !== 'passed' && result.status !== 'skipped') {
+      this.failedTests.push({
+        title: test.title,
+        projectName: test.parent.project()?.name ?? '',
+        status: result.status,
+        duration: result.duration,
+        retry: result.retry,
+        error: {
+          message: this.stripAnsi(result.error?.message),
+          stack: this.stripAnsi(result.error?.stack),
+          snippet: this.stripAnsi(result.error?.snippet)
+        }
+      });
+    }
 
     if (!this.botzzUrl) {
       return;
@@ -42,6 +65,15 @@ class DiscordReporter implements Reporter {
       project: this.project,
       type: 'countStatus',
       data: this.countStatus
+    });
+
+    await axios.post(this.botzzUrl, {
+      project: this.project,
+      type: 'digest',
+      data: {
+        summary: this.countStatus,
+        failures: this.failedTests
+      }
     });
   }
 

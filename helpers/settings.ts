@@ -62,6 +62,9 @@ const reportParseEnv = (process.env.REPORTERS || 'playwright-json-summary-report
 export const REPORTERS = [
   ...(RP_API_KEY ? [['@reportportal/agent-js-playwright', RPconfig]] : []),
   ...reportParseEnv,
+  ...(process.env.ENABLE_JSON_REPORT === 'true'
+    ? [['json', { outputFile: process.env.PLAYWRIGHT_JSON_OUTPUT_NAME || 'test-results/results.json' }]]
+    : []),
   ['@eduzz/e2e-playwright-base/dist/reporters/DiscordReporter', { botzzUrl: BOTZZ_URL, project: PROJECT }]
 ];
 
