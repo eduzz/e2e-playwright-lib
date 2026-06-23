@@ -1,6 +1,6 @@
 import { type Locator, type Page } from '@playwright/test';
 
-import type { Roles } from './types';
+import type { Roles } from './types.js';
 
 export class AbstractPage<TPageLocator> {
   protected pageLocator!: TPageLocator;
@@ -56,7 +56,7 @@ export class AbstractPage<TPageLocator> {
     return this.page.getByTestId(role);
   }
 
-  public getByText(text: string, options?: { exact?: boolean }) {
+  public getByText(text: string | RegExp, options?: { exact?: boolean }) {
     return this.page.getByText(text, options);
   }
 
