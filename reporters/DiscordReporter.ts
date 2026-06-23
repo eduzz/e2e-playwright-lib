@@ -34,7 +34,7 @@ class DiscordReporter implements Reporter {
   public async onTestEnd(test: TestCase, result: TestResult): Promise<void> {
     this.countStatus[result.status]++;
 
-    if (result.status !== 'passed' && result.status !== 'skipped') {
+    if (result.status !== 'passed' && result.status !== 'skipped' && result.retry === test.retries) {
       this.failedTests.push({
         title: test.title,
         projectName: test.parent.project()?.name ?? '',
